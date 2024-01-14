@@ -6,6 +6,50 @@ $color-red: #BF6464
 $color-green: #6EC56C
 $color-grey: #ECECEC
 
+@keyframes leftToRight
+    0%
+        opacity: 0.1
+        transform: translateX(-2rem)
+    100%
+        opacity: 1
+        transform: translateX(0)
+@keyframes leftToRightRed
+    0%
+        opacity: 0
+        transform: translateX(-5rem)
+    100%
+        opacity: 1
+        transform: translateX(0)
+        transform: rotate(-65deg)
+@keyframes leftToRightGreen
+    0%
+        opacity: 0
+        transform: translateX(-5rem)
+    100%
+        opacity: 1
+        transform: translateX(0)
+        transform: rotate(-45deg)
+@keyframes leftToRightBlue
+    0%
+        opacity: 0
+        transform: translateX(-5rem)
+    100%
+        opacity: 1
+        transform: translateX(0)
+        transform: rotate(-25deg)
+@keyframes rightToLeft
+    0%
+        opacity: 0
+        transform: translateX(5rem)
+    100%
+        opacity: 1
+        transform: translateX(0)
+@keyframes appear
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+
 .link
     text-decoration: none
     color: black
@@ -33,14 +77,22 @@ $color-grey: #ECECEC
     &__navigation-link
         display: flex
         gap: 10px
-        align-items: center
+        align-items: end
         cursor: pointer
+        transition: all .3s
+        &:hover
+            transition: all .6s
+            opacity: 0.8
+            transform: translateY(-0.12rem)
     &__navigation-icon
         width: 20px
         height: 20px
     &__content-container
         display: flex
         flex-direction: row
+
+.hamburger
+    display: none
 
 .container
     max-width: 1240px
@@ -51,6 +103,7 @@ $color-grey: #ECECEC
     &__img
         position: relative
         z-index: 19
+        animation: leftToRight 1s ease-in-out
     &__rectangle-red
         position: absolute
         top: 155px
@@ -64,6 +117,7 @@ $color-grey: #ECECEC
         border: 1px solid #000
         background: $color-red
         box-shadow: 2px 7px 4px 0px rgba(0, 0, 0, 0.25)
+        animation: leftToRightRed 1.25s ease-in-out
     &__rectangle-green
         position: absolute
         width: 482px
@@ -77,6 +131,7 @@ $color-grey: #ECECEC
         border: 1px solid #000
         background: $color-green
         box-shadow: 2px 7px 4px 0px rgba(0, 0, 0, 0.25)
+        animation: leftToRightGreen 1.75s ease-in-out
     &__rectangle-blue
         position: absolute
         top: 236px
@@ -89,6 +144,7 @@ $color-grey: #ECECEC
         border: 1px solid #000
         background: $color-blue
         box-shadow: 2px 7px 4px 0px rgba(0, 0, 0, 0.25)
+        animation: leftToRightBlue 2.25s ease-in-out
 
 .icons
     display: grid
@@ -96,6 +152,7 @@ $color-grey: #ECECEC
     gap: 14px
     font-size: 18px
     margin: 0 0 15px 0
+    z-index: 25
     &__item
         display: flex
         justify-content: center
@@ -105,6 +162,12 @@ $color-grey: #ECECEC
         border: 1px solid black
         border-radius: 50%
         font-size: 21px
+        transition: all .3s
+        &:hover
+            transition: all .3s
+            opacity: 0.8
+            transform: translateY(-0.3rem)
+            box-shadow: 0 .6rem .6rem 0 rgba(0, 0, 0, 0.2)
 
 .right-wrapper
     position: relative
@@ -112,12 +175,15 @@ $color-grey: #ECECEC
     max-width: 365px
     justify-content: center
     flex-direction: column
+    animation: rightToLeft 2s ease-in-out
     &__circle
         position: absolute
         top: 33%
         right: 0%
         width: 228px
         height: 228px
+        display: inline-block
+        z-index: 0
     &__title
         position: relative
         z-index: 2
@@ -139,7 +205,12 @@ $color-grey: #ECECEC
         z-index: 2
         width: 50px
         height: 50px
+        transition: all .3s
         cursor: pointer
+        &:hover
+            transition: all .6s
+            opacity: 0.8
+            transform: translateY(-0.25rem)
 
 .button
     width: 225px
@@ -155,6 +226,13 @@ $color-grey: #ECECEC
     border: 1px solid #000
     box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25)
     cursor: pointer
+    transition: all .3s
+    z-index: 25
+    &:hover
+        transition: all .6s
+        opacity: 0.8
+        transform: translateY(-0.3rem)
+        box-shadow: 0 .6rem .6rem 0 rgba(0, 0, 0, 0.2)
 
 .title
     border-bottom: 1px solid black
@@ -174,6 +252,7 @@ $color-grey: #ECECEC
         grid-template-areas: "title title title" "card1 card2 card3"
     &__title
         grid-area: title
+        animation: leftToRight 2s ease-in-out
 
 .cards-item
     position: relative
@@ -270,6 +349,11 @@ $color-grey: #ECECEC
         left: -13%
     &__button-icon
         cursor: pointer
+        transition: all .3s
+        &:hover
+            transition: all .6s
+            opacity: 0.8
+            transform: translateY(-0.25rem)
 
 .text-title
     color: #000
@@ -435,12 +519,14 @@ $color-grey: #ECECEC
             &-link
                 max-width: max-content
     .hamburger
+        display: block
         width: 30px
         height: 14px
         position: absolute
         top: 8%
         right: 10%
-        z-index: 21
+        z-index: 999
+        cursor: pointer
         span
             height: 2px
             width: 100%
@@ -463,6 +549,7 @@ $color-grey: #ECECEC
                     transform: translateY(3px) rotate(45deg)
     .main-section__navigation_active
         right: 0
+        z-index: 998
 
     .left-wrapper__img
         width: 540px
@@ -486,22 +573,25 @@ $color-grey: #ECECEC
         &__img
             width: 100%
         &__rectangle-red
-            transform: rotate(115deg)
+            // transform: rotate(115deg)
             width: 350px
-            top: 60px
+            height: 150px
+            top: 90px
             left: -5%
             
         &__rectangle-green
-            transform: rotate(135deg)
+            // transform: rotate(135deg)
             width: 350px
-            top: 60px
-            left: 0%
+            height: 150px
+            top: 110px
+            left: 2%
             
         &__rectangle-blue
-            transform: rotate(145deg)
+            // transform: rotate(145deg)
             width: 350px
-            top: 70px
-            left: 5%
+            height: 150px
+            top: 130px
+            left: 7%
             
     .right-wrapper
         &__title
@@ -542,21 +632,26 @@ $color-grey: #ECECEC
             justify-content: center
         &__image
             display: none
+    
+    .right-wrapper
+        animation: appear 3s ease-in-out
 
 @media screen and (max-width:400px)
     .left-wrapper
         &__rectangle-red
-            transform: rotate(95deg)
+            // transform: rotate(95deg)
+            top: 58px
+            left: -11.5%
             width: 300px
         &__rectangle-green
-            transform: rotate(105deg)
-            top: 60px
-            left: 0
+            // transform: rotate(105deg)
+            top: 70px
+            left: -2%
             width: 300px
         &__rectangle-blue
-            transform: rotate(115deg)
-            top: 60px
-            left: 3%
+            // transform: rotate(115deg)
+            top: 90px
+            left: 0%
             width: 300px
     .main-section
         min-height: 600px
